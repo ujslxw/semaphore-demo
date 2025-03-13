@@ -1,3 +1,3 @@
-- hosts: www.baidu.com
+- hosts: 10.128.0.4
   roles:
   - ping
