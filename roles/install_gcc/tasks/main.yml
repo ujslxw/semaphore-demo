@@ -1,0 +1,30 @@
+- name: Distribute CentOS-SCLo-scl.repo
+  copy: src=CentOS-SCLo-scl.repo dest=/etc/yum.repos.d/CentOS-SCLo-scl.repo mode=0644
+
+- name: Distribute CentOS-SCLo-scl-rh.repo
+  copy: src=CentOS-SCLo-scl-rh.repo dest=/etc/yum.repos.d/CentOS-SCLo-scl-rh.repo mode=0644
+
+- name: Update Yum cache
+  become: true
+  yum:
+    update_cache: yes
+
+- name: Install epel-release Repository and Install high version GCC
+  become: true
+  yum:
+    name: "{{ item }}"
+    state: present
+    skip_broken: yes
+  with_items:
+    - epel-release
+    - devtoolset-8-gcc
+    - devtoolset-8-gcc-c++
+    - devtoolset-8-binutils
+    
+- name: Create old GCC backup
+  become: true
+  shell: mv /usr/bin/g++ /usr/bin/g++.bak && mv /usr/bin/gcc /usr/bin/gcc.bak
+
+- name: Create new GCC soft link
+  become: true
+  shell: ln -sv /opt/rh/devtoolset-8/root/bin/gcc /usr/bin/gcc && ln -sv /opt/rh/devtoolset-8/root/bin/g++ /usr/bin/g++
