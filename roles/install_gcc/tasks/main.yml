@@ -8,6 +8,7 @@
   become: true
   yum:
     update_cache: yes
+    use_backend: yum
 
 - name: Install epel-release Repository and Install high version GCC
   become: true
