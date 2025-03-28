@@ -1,3 +1,0 @@
-- hosts: 10.128.0.4
-  roles:
-  - install_gcc
