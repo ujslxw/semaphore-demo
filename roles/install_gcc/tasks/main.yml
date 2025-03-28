@@ -8,7 +8,7 @@
   become: true
   yum:
     update_cache: yes
-    use_backend: yum
+    use_backend: dnf4
 
 - name: Install epel-release Repository and Install high version GCC
   become: true
@@ -16,7 +16,7 @@
     name: "{{ item }}"
     state: present
     skip_broken: yes
-    use_backend: yum
+    use_backend: dnf4
   with_items:
     - epel-release
     - devtoolset-8-gcc
