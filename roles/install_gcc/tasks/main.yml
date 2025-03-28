@@ -15,6 +15,7 @@
     name: "{{ item }}"
     state: present
     skip_broken: yes
+    use_backend: yum
   with_items:
     - epel-release
     - devtoolset-8-gcc
