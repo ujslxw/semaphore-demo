@@ -8,7 +8,6 @@
   become: true
   yum:
     update_cache: yes
-    use_backend: yum
 
 - name: Install epel-release Repository and Install high version GCC
   become: true
@@ -16,12 +15,12 @@
     name: "{{ item }}"
     state: present
     skip_broken: yes
-    use_backend: yum
   with_items:
     - epel-release
     - devtoolset-8-gcc
     - devtoolset-8-gcc-c++
     - devtoolset-8-binutils
+  when: ansible_distribution_major_version == '7'
     
 - name: Create old GCC backup
   become: true
