@@ -1,7 +1,3 @@
-- name: Get Controlled Node Distribution
-  debug:
-    msg: "{{ ansible_lsb.description }}"
-
 - name: Distribute CentOS-SCLo-scl.repo
   copy: src=CentOS-SCLo-scl.repo dest=/etc/yum.repos.d/CentOS-SCLo-scl.repo mode=0644
 
