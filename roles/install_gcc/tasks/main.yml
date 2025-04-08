@@ -6,8 +6,7 @@
 
 - name: Update Yum cache
   become: true
-  yum:
-    update_cache: yes
+  shell: yum clean all && yum makecache
 
 - name: Install epel-release Repository and Install high version GCC
   become: true
