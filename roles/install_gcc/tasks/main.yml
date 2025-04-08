@@ -1,5 +1,5 @@
 - name: Get Controlled Node Distribution
-    debug:
+  debug:
     msg: "{{ ansible_lsb.description }}"
 
 - name: Distribute CentOS-SCLo-scl.repo
